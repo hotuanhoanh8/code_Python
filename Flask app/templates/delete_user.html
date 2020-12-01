@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xoa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <h1>Xoa khach hang</h1>
+    <br>
+    <form action="" method="post">       
+        <div class="form-group">
+            <input type="text" class="form-control" style="width:50%;" placeholder="Ho Ten" name="hoten" value="{{
+          request.form.hoten }}">
+        </div>
+      <input class="btn btn-success" type="submit" value="Xoa">
+    </form>
+    {% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+</div>
+</body>
+</html>

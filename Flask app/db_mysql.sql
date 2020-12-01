@@ -120,5 +120,5 @@ values('KH06','Tran Thi Van','123 Tran Hung Dao, Q5, TpHCM','889544','1970-10-22
 
 select * from Users where hoten = 'Nguyen Van A';
 
-update Users set sodt = '123456'
-where hoten = 'Nguyen Van A';
+update Users set hoten = 'Nguyen Van A', sodt = '456789'
+where hoten = 'Nguyen Van B';

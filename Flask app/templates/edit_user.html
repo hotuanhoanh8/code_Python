@@ -1,5 +1,30 @@
-{% extends 'display_table.html' %}
-<body>
+
+<h1>{% block title %} Hien thi thong tin {% endblock %}</h1>
+  <table border="1">
+            <thead>
+                <tr>
+                    <th>Ma khach hang</th>
+                    <th>Ho ten</th>
+                    <th>Dia chi</th>
+                    <th>So dien thoai</th>
+                    <th>Ngay sinh</th>
+                    <th>Ngay dang ky</th>
+                    <th>Doanh so</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for item in row %}
+                    <td>
+                        {{item}}
+                    </td>
+                    {% endfor %}
+                </tr>  
+                {% endfor %}
+            </tbody>
+  </table>           
+{% block content %}
     <div class="container">
         <h1>Chinh sua thong tin khach hang</h1>
         <br>
@@ -26,4 +51,4 @@
         <p class="error"><strong>Error:</strong> {{ error }}
             {% endif %}
     </div>
-</body>
+{% endblock %}
