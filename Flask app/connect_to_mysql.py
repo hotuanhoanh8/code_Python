@@ -31,7 +31,6 @@ def login():
         data = cursor.fetchall()
         uname = str(data[0][0])
         passwd = str(data[0][1])
-        print("{},{}".format(uname, passwd))
         if (request.form['username'] == uname and request.form['password'] == passwd):
             return redirect(url_for('index'))
         else:
