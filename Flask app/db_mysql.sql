@@ -57,6 +57,14 @@ create table CTHDs
         foreign key (maSP) references SanPhams (maSP)
             on update cascade on delete set null
 );
+create table TTDANGNHAPs (
+    username varchar(20)  null,
+    passwd varchar(20)  null,
+    KHACHHANG_MAKH varchar(255)  null,
+    constraint TTDANGNHAPs_ibfk_1
+		foreign key(KHACHHANG_MAKH) references Users (maKH)
+			on update cascade on delete set null
+);
 
 create index HoaDonSoH
     on CTHDs (HoaDonSoH);
@@ -107,13 +115,20 @@ values
     (1003,'BC01',5),
     (1004,'BC02',10),
     (1005,'ST06',10);
+
+insert into TTDANGNHAPs (username,passwd,KHACHHANG_MAKH)
+values
+	('nguyenvana','nguyenvana123','KH01'),
+    ('tranvanb','tranvanb456','KH02'),
+    ('nguyenvanc','nguyenvanc789','KH03');
+    
 /*--lay column name
 SELECT COLUMN_NAME , ORDINAL_POSITION
 FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_SCHEMA = 'test1' AND TABLE_NAME = 'users';
-*/
-select * from users;
-delete from users where users.hoten ='Tran Thi Van';
+WHERE TABLE_SCHEMA = 'test1' AND TABLE_NAME = 'Users';
+
+select * from Users;
+delete from Users where Users.hoten ='Tran Thi Van';
 
 insert into Users (maKH,hoten,dchi,sodt,ngSinh,ngDK,doanhSo)
 values('KH06','Tran Thi Van','123 Tran Hung Dao, Q5, TpHCM','889544','1970-10-22','1980-10-2',6060000);
@@ -122,3 +137,7 @@ select * from Users where hoten = 'Nguyen Van A';
 
 update Users set hoten = 'Nguyen Van A', sodt = '456789'
 where hoten = 'Nguyen Van B';
+
+select username, passwd from TTDANGNHAPs where username='nguyenvana' and passwd='nguyenvana123';
+*/
+

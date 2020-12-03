@@ -1,0 +1,43 @@
+<html>
+    <body>
+        {% block content %}
+        <h1>{% block title %} Hien thi thong tin {% endblock %}</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Ma khach hang</th>
+                    <th>Ho ten</th>
+                    <th>Dia chi</th>
+                    <th>So dien thoai</th>
+                    <th>Ngay sinh</th>
+                    <th>Ngay dang ky</th>
+                    <th>Doanh so</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for item in row %}
+                    <td>
+                        {{item}}
+                    </td>
+                    {% endfor %}
+                </tr>  
+                {% endfor %}
+            </tbody>
+        </table>           
+        {% endblock %}
+        <a href="/create_user" >
+            <button type="button">Them</button>
+        </a>
+        <a href="/get_user_info" >
+            <button type="button">Tim kiem</button>
+        </a>
+        <a href="/delete_user" >
+            <button type="button">Xoa</button>
+        </a>
+        <a href="/" >
+            <button type="button">Back</button>
+        </a>        
+    </body>
+</html>

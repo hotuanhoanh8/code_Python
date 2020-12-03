@@ -12,25 +12,62 @@ def get_db_connection():
 
     conn = mysql.connect()
     return conn
-"""
-def get_info():
+
+@app.route('/')
+def index():
+   return render_template('index.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * from Users")
-    data = cursor.fetchall()
-    return data
-"""
-   
-@app.route('/display')
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        queryMess = """select username, passwd from TTDANGNHAPs where username='{}' and passwd='{}';""".format(username,password)
+        cursor.execute(queryMess)
+        data = cursor.fetchall()
+        uname = str(data[0][0])
+        passwd = str(data[0][1])
+        print("{},{}".format(uname, passwd))
+        if (request.form['username'] == uname and request.form['password'] == passwd):
+            return redirect(url_for('index'))
+        else:
+            error = 'Thong tin dang nhap khong hop le! Hay thu lai.'
+    conn.close()
+    return render_template('login.html', error=error)
+'''
+#sql injection
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        queryMess = """select username, passwd from TTDANGNHAPs where username='{}' and passwd='{}';""".format(username,password)
+        cursor.execute(queryMess)
+        account = cursor.fetchall()
+        if account:
+            return redirect(url_for('index'))
+        else:
+            error = 'Thong tin dang nhap khong hop le! Hay thu lai.'
+    conn.close()
+    return render_template('login.html', error=error)
+'''
+@app.route('/display_user')
 def get_users_info():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * from Users")
+    cursor.execute("select * from Users")
     data = cursor.fetchall()
     conn.close()
-    return render_template('display_table.html', data=data)
+    return render_template('display_user.html', data=data)
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():
@@ -56,12 +93,12 @@ def get_user_info():
     cursor = conn.cursor()
     if request.method =='POST':
         hoten = request.form['hoten']
-        query = """SELECT * from Users where hoten='{}';""".format(hoten)
+        query = """select * from Users where hoten='{}';""".format(hoten)
         cursor.execute(query)
         conn.commit()
         data = cursor.fetchall()
 
-        return render_template('display_table.html',data=data)
+        return render_template('display_user.html',data=data)
     conn.close()
     return render_template('search_user.html')
 
@@ -73,7 +110,7 @@ def edit_user():
     
     if request.method =='POST':
         hoten = request.form['hoten']
-        query = """SELECT * from Users where hoten='{}';""".format(hoten)
+        query = """select * from Users where hoten='{}';""".format(hoten)
         cursor.execute(query)
         conn.commit()
         data = cursor.fetchall()
