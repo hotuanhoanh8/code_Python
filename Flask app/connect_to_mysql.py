@@ -31,6 +31,7 @@ def login():
         data = cursor.fetchall()
         uname = str(data[0][0])
         passwd = str(data[0][1])
+        print("{},{}".format(uname, passwd))
         if (request.form['username'] == uname and request.form['password'] == passwd):
             return redirect(url_for('index'))
         else:
@@ -67,6 +68,16 @@ def get_users_info():
     data = cursor.fetchall()
     conn.close()
     return render_template('display_user.html', data=data)
+
+@app.route('/display_items')
+def get_items_info():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("select * from SanPhams;")
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('display_items.html', data=data)
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():

@@ -1,3 +1,4 @@
+
 create table LoaiSPs
 (
     loai_sp_masp varchar(255) not null
@@ -121,7 +122,13 @@ values
 	('nguyenvana','nguyenvana123','KH01'),
     ('tranvanb','tranvanb456','KH02'),
     ('nguyenvanc','nguyenvanc789','KH03');
-    
+   
+select * from Users;
+select * from LoaiSPs;
+select * from SanPhams;
+select * from CTHDs;
+select * from HoaDons;
+select * from TTDANGNHAPs;
 /*--lay column name
 SELECT COLUMN_NAME , ORDINAL_POSITION
 FROM INFORMATION_SCHEMA.COLUMNS
