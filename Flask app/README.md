@@ -3,7 +3,7 @@
 - Hồ Tuấn Hoành
 - Huỳnh Văn Mạnh Tiến
 - Dương Xuân Quin
-- Nguyễn Thị Thương
+- Nguyễn Ngọc Thương
 ## Yêu cầu:
 - Máy đã cài python3, MySQL
 ## Hướng dẫn sử dụng:
